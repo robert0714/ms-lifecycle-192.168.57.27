@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
 #    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27" , gateway: "192.168.57.1"
 #    ununtu need complete ip configuration .
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27", auto_config: "false", netmask: "255.255.255.0" , gateway: "192.168.57.1"
+    d.vm.network "private_network", ip: "10.100.198.200"
 #    default_router = "192.168.57.1"
 #    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
     d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
@@ -30,7 +31,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "prod" do |d|
     d.vm.box = "ubuntu/trusty64"
     d.vm.hostname = "prod"
-    d.vm.network "private_network", ip: "10.100.198.201"
+#    d.vm.network "private_network", ip: "10.100.198.201"
+    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.31" , gateway: "192.168.57.1" 
     d.vm.provider "virtualbox" do |v|
       v.memory = 1024
     end
@@ -38,7 +40,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "logging" do |d|
     d.vm.box = "ubuntu/trusty64"
     d.vm.hostname = "logging"
-    d.vm.network "private_network", ip: "10.100.198.202"
+#    d.vm.network "private_network", ip: "10.100.198.202"
+    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.32" , gateway: "192.168.57.1" 
     d.vm.provider "virtualbox" do |v|
       v.memory = 1536
     end
@@ -47,7 +50,8 @@ Vagrant.configure(2) do |config|
     config.vm.define "serv-disc-0#{i}" do |d|
       d.vm.box = "ubuntu/trusty64"
       d.vm.hostname = "serv-disc-0#{i}"
-      d.vm.network "private_network", ip: "10.100.194.20#{i}"
+#      d.vm.network "private_network", ip: "10.100.194.20#{i}"
+      d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.4#{i}" , gateway: "192.168.57.1" 
       d.vm.provider "virtualbox" do |v|
         v.memory = 1024
       end
@@ -56,7 +60,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "proxy" do |d|
     d.vm.box = "ubuntu/trusty64"
     d.vm.hostname = "proxy"
-    d.vm.network "private_network", ip: "10.100.193.200"
+#    d.vm.network "private_network", ip: "10.100.193.200"
+   d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.40" , gateway: "192.168.57.1"  
     d.vm.provider "virtualbox" do |v|
       v.memory = 1024
     end
@@ -64,7 +69,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "swarm-master" do |d|
     d.vm.box = "ubuntu/wily64"
     d.vm.hostname = "swarm-master"
-    d.vm.network "private_network", ip: "10.100.192.200"
+#    d.vm.network "private_network", ip: "10.100.192.200"
+    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.50" , gateway: "192.168.57.1" 
     d.vm.provider "virtualbox" do |v|
       v.memory = 1024
     end
@@ -74,7 +80,8 @@ Vagrant.configure(2) do |config|
       d.vm.box = "ubuntu/wily64"
       d.vm.hostname = "swarm-node-#{i}"
       d.vm.network "private_network", ip: "10.100.192.20#{i}"
-      d.vm.provider "virtualbox" do |v|
+#     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1" 
+     d.vm.provider "virtualbox" do |v|
         v.memory = 1536
       end
     end
@@ -85,7 +92,7 @@ Vagrant.configure(2) do |config|
       d.vm.box = "bento/centos-7.2"      
       d.vm.hostname = "mesos-#{i}"
 #      d.vm.network "private_network", ip: "10.100.197.20#{i}"
-      d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.28" , gateway: "192.168.57.1"
+      d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1"
       d.vm.provider "virtualbox" do |v|
         v.memory = 1536
       end
