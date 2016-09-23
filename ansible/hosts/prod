@@ -1,42 +1,42 @@
 [flocker-client]
-10.100.198.200
+192.168.57.27
 
 [flocker-node]
-10.100.192.20[0:2]
+192.168.57.50[0:2]
 
 [jenkins-node]
-10.100.198.200
-10.100.198.201
+192.168.57.27
+192.168.57.31
 
 [jenkins-node-swarm]
-10.100.198.200
-10.100.192.200
+192.168.57.27
+192.168.57.50
 
 [kube]
-10.100.199.20[0:2]
+192.168.57.5[0:2]
 
 [kube-master]
-10.100.199.200
+192.168.57.50
 
 [logging]
-10.100.198.202
+192.168.57.32
 
 [mesos]
-10.100.197.201 mesos_master=true
-10.100.197.20[2:3]
+192.168.57.51 mesos_master=true
+192.168.57.5[2:3]
 
 [mesos:vars]
-mesos_master_ip=10.100.197.201
+mesos_master_ip=192.168.57.51
 
 [prod]
-10.100.198.201 consul_extra="-server -bootstrap -ui"
+192.168.57.31 consul_extra="-server -bootstrap -ui"
 
 [registry]
-10.100.198.200
+192.168.57.27
 
 [swarm]
-10.100.192.200 swarm_master=true consul_extra="-server -bootstrap -ui" docker_cfg=docker-swarm-master.service
-10.100.192.20[1:2] swarm_master_ip=10.100.192.200 consul_extra="-join 10.100.192.200" consul_server_ip=10.100.192.200 docker_cfg=docker-swarm-node.service
+192.168.57.50 swarm_master=true consul_extra="-server -bootstrap -ui" docker_cfg=docker-swarm-master.service
+192.168.57.5[1:2] swarm_master_ip=192.168.57.50 consul_extra="-join 192.168.57.50" consul_server_ip=192.168.57.50 docker_cfg=docker-swarm-node.service
 
 [swarm-master]
-10.100.192.200
+192.168.57.50
