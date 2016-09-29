@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder ".", "/vagrant"
   end
   config.vm.define "cd" do |d|
-  config.ssh.insert_key = false
+#  config.ssh.insert_key = false
 #  config.ssh.password = "vagrant"
      d.vm.box = "bento/centos-7.2"
 #    d.vm.box ="ubuntu/trusty64"
@@ -29,7 +29,9 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "prod" do |d|
-    d.vm.box = "ubuntu/trusty64"
+#  config.ssh.insert_key = false
+#    d.vm.box = "ubuntu/trusty64"
+    d.vm.box = "bento/centos-7.2"
     d.vm.hostname = "prod"
 #    d.vm.network "private_network", ip: "10.100.198.201"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.31" , gateway: "192.168.57.1" 

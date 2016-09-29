@@ -2,8 +2,8 @@
   remote_user: vagrant
   serial: 1
   roles:
-    - common
-    - docker
+    - common-centos
+    - docker-centos
     - docker-compose
     - consul
     - registrator
