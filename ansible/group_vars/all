@@ -1,4 +1,5 @@
-ip: "{{ facter_ipaddress_eth1 }}"
+ip: 192.168.57.27 
+# ip:  "{{ facter_ipaddress_eth1 }}"
 consul_extra: ""
 proxy_url: http://{{ facter_ipaddress_eth1 }}
 proxy_url2: http://{{ facter_ipaddress_eth1 }}
@@ -9,5 +10,5 @@ debian_version: trusty
 docker_cfg: docker.cfg
 docker_cfg_dest: /etc/default/docker
 elk_ip: 192.168.57.32
-jenkins_version: 1.651.3
+jenkins_version: 1.642.4
 registry_host_dir: /vagrant/registry

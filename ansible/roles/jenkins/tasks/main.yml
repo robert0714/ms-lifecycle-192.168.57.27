@@ -40,6 +40,7 @@
     creates: /data/jenkins/plugins/{{ item }}
   with_items: plugins
   register: plugins_result
+  ignore_errors: yes
   tags: [jenkins]
 
 - wait_for:

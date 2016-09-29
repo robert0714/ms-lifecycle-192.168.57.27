@@ -1,5 +1,6 @@
 - name: Package is present
-  apt:
-    name=openjdk-7-jdk
+  yum:
+#    name=openjdk-7-jdk
+    name=java-1.7.0-openjdk
     state=present
   tags: [java]
