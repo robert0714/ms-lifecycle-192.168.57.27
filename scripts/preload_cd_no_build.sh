@@ -4,7 +4,7 @@ git clone https://github.com/robert0714/books-ms-centos.git
 
 set -e
 
-cd books-ms
+cd books-ms-centos
 
 docker pull vfarcic/books-ms
 

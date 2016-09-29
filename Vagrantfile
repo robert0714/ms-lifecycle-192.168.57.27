@@ -67,7 +67,9 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "swarm-master" do |d|
-    d.vm.box = "ubuntu/wily64"
+  config.ssh.insert_key = false
+#    d.vm.box = "ubuntu/wily64"
+    d.vm.box = "bento/centos-7.2"
     d.vm.hostname = "swarm-master"
 #    d.vm.network "private_network", ip: "10.100.192.200"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.50" , gateway: "192.168.57.1" 
@@ -77,10 +79,12 @@ Vagrant.configure(2) do |config|
   end
   (1..2).each do |i|
     config.vm.define "swarm-node-#{i}" do |d|
-      d.vm.box = "ubuntu/wily64"
-      d.vm.hostname = "swarm-node-#{i}"
-      d.vm.network "private_network", ip: "10.100.192.20#{i}"
-#     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1" 
+    config.ssh.insert_key = false
+#      d.vm.box = "ubuntu/wily64"
+     d.vm.box = "bento/centos-7.2"
+     d.vm.hostname = "swarm-node-#{i}"
+#     d.vm.network "private_network", ip: "10.100.192.20#{i}"
+     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1" 
      d.vm.provider "virtualbox" do |v|
         v.memory = 1536
       end
