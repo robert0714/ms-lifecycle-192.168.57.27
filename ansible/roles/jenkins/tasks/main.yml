@@ -22,6 +22,10 @@
   when: container_result|changed
   tags: [jenkins]
 
+- name: git is present
+  yum: name=git state=latest  
+  tags: [jenkins]
+
 - name: Configurations are present
   copy:
     src: "{{ item.src }}"
