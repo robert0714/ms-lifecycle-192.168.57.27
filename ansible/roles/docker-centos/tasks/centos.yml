@@ -1,3 +1,8 @@
+- name: CentOS dirctory are copied
+  file: path=/etc/docker state=directory mode=0755
+  ignore_errors: yes
+  tags: [docker-centos]
+
 - name: CentOS files are copied
   copy:
     src: "{{ item.src }}"
