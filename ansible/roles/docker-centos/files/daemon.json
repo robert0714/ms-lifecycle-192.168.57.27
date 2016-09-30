@@ -1,0 +1,5 @@
+#/etc/docker/daemon.json
+#https://github.com/docker/distribution/issues/1874
+#http://qiita.com/nkmry/items/e2ce67dd66be1f347b67
+#http://stackoverflow.com/questions/38695515/can-not-pull-push-images-after-update-docker-to-1-12
+{ "insecure-registries":["192.168.57.27:5000"] }
