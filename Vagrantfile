@@ -18,7 +18,7 @@ Vagrant.configure(2) do |config|
 #    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27" , gateway: "192.168.57.1"
 #    ununtu need complete ip configuration .
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27", auto_config: "false", netmask: "255.255.255.0" , gateway: "192.168.57.1"
-    d.vm.network "private_network", ip: "10.100.198.200"
+#    d.vm.network "private_network", ip: "10.100.198.200"
 #    default_router = "192.168.57.1"
 #    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
     d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
