@@ -4,8 +4,8 @@
   vars:
     - log_to_syslog: yes
   roles:
-    - common
-    - docker
+    - common-centos
+    - docker-centos
     - docker-compose
     - consul
     - registrator
