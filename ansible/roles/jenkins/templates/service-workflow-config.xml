@@ -22,17 +22,17 @@
                 <hudson.model.StringParameterDefinition>
                     <name>prodIp</name>
                     <description></description>
-                    <defaultValue>10.100.198.201</defaultValue>
+                    <defaultValue>192.168.57.31</defaultValue>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
                     <name>proxyIp</name>
                     <description></description>
-                    <defaultValue>10.100.198.201</defaultValue>
+                    <defaultValue>192.168.57.31</defaultValue>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
                     <name>registryIpPort</name>
                     <description></description>
-                    <defaultValue>10.100.198.200:5000</defaultValue>
+                    <defaultValue>192.168.57.27:5000</defaultValue>
                 </hudson.model.StringParameterDefinition>
             </parameterDefinitions>
         </hudson.model.ParametersDefinitionProperty>
