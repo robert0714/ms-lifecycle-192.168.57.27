@@ -8,7 +8,7 @@ cd books-ms-centos
 
 docker pull vfarcic/books-ms
 
-docker tag vfarcic/books-ms 192.168.57.27:5000/books-ms
+docker tag vfarcic/books-ms 192.168.57.27:5000/books-ms-centos
 
 docker push 192.168.57.27:5000/books-ms
 
