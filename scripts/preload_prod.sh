@@ -6,6 +6,6 @@ docker pull mongo
 
 docker pull nginx
 
-docker pull 192.168.57.27:5000/books-ms
+docker pull 192.168.57.27:5000/books-ms-centos
 
 docker pull gliderlabs/registrator
