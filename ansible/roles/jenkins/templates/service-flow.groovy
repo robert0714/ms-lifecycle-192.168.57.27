@@ -1,5 +1,5 @@
 node("cd") {
-    sh  "git  config --global url.\"https://\".insteadOf git:// "
+    sh  "/usr/bin/git   config --global url.\"https://\".insteadOf git:// "
     git url: "https://github.com/vfarcic/${serviceName}.git"
     def flow = load "/data/scripts/workflow-util.groovy"
     flow.provision("prod2.yml")
