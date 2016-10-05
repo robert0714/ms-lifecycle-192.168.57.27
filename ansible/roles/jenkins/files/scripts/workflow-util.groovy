@@ -40,6 +40,7 @@ def buildService(serviceName, registryIpPort) {
 def deploy(serviceName, prodIp) {
     stage "Deploy"
     withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
+        sh "echo   $DOCKER_HOST"
         sh "docker-compose pull app"
         sh "docker-compose -p ${serviceName} up -d app"
     }
