@@ -51,7 +51,8 @@ Vagrant.configure(2) do |config|
   end
   (1..3).each do |i|
     config.vm.define "serv-disc-0#{i}" do |d|
-     d.vm.box = "ubuntu/trusty64"
+#     d.vm.box = "ubuntu/trusty64"
+     d.vm.box = "williamyeh/ubuntu-trusty64-docker" 
 #      d.vm.box = "bento/centos-7.2"
       d.vm.hostname = "serv-disc-0#{i}"
 #      d.vm.network "private_network", ip: "10.100.194.20#{i}"
