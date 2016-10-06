@@ -2,6 +2,7 @@
   apt:
     name: jq
     force: yes
+  ignore_errors: yes
   tags: [common]
 
 - name: Host is present
