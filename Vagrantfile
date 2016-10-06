@@ -30,8 +30,8 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "prod" do |d|
 #  config.ssh.insert_key = false
-    d.vm.box = "ubuntu/trusty64"
-#    d.vm.box = "bento/centos-7.2"
+#    d.vm.box = "ubuntu/trusty64"
+    d.vm.box = "bento/centos-7.2"
 #    d.vm.box = "williamyeh/centos7-docker"
     d.vm.hostname = "prod"
 #    d.vm.network "private_network", ip: "10.100.198.201"

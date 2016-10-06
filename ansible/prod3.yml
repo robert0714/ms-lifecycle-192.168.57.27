@@ -5,8 +5,8 @@
     - common-centos
     - docker-centos
     - docker-compose
-    - consul
+    - consul-centos
     - registrator
     - consul-template
-    - nginx
+    - nginx-centos
     - filebeat
