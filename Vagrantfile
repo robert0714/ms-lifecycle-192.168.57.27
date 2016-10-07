@@ -10,7 +10,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "cd" do |d|
 #  config.ssh.insert_key = false
 #  config.ssh.password = "vagrant"
-     d.vm.box = "bento/centos-7.2"
+    d.vm.box = "centos/7"
+#    d.vm.box = "bento/centos-7.2"
 #    d.vm.box ="ubuntu/trusty64"
 #    d.vm.box ="bento/ubuntu-14.04"
 #    d.vm.box = "ubuntu/wily64"
@@ -31,7 +32,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "prod" do |d|
 #  config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/trusty64"
-    d.vm.box = "bento/centos-7.2"
+    d.vm.box = "centos/7"
+#    d.vm.box = "bento/centos-7.2"
 #    d.vm.box = "williamyeh/centos7-docker"
     d.vm.hostname = "prod"
 #    d.vm.network "private_network", ip: "10.100.198.201"
@@ -75,7 +77,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "swarm-master" do |d|
   config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
-    d.vm.box = "bento/centos-7.2"
+#    d.vm.box = "bento/centos-7.2"
+    d.vm.box = "centos/7" 
     d.vm.hostname = "swarm-master"
 #    d.vm.network "private_network", ip: "10.100.192.200"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.50" , gateway: "192.168.57.1" 
@@ -86,8 +89,9 @@ Vagrant.configure(2) do |config|
   (1..2).each do |i|
     config.vm.define "swarm-node-#{i}" do |d|
     config.ssh.insert_key = false
-#      d.vm.box = "ubuntu/wily64"
-     d.vm.box = "bento/centos-7.2"
+#    d.vm.box = "ubuntu/wily64"
+#    d.vm.box = "bento/centos-7.2"
+     d.vm.box = "centos/7"
      d.vm.hostname = "swarm-node-#{i}"
 #     d.vm.network "private_network", ip: "10.100.192.20#{i}"
      d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1" 
@@ -99,7 +103,8 @@ Vagrant.configure(2) do |config|
   (1..2).each do |i|
     config.vm.define "mesos-#{i}" do |d|
     config.ssh.insert_key=false  
-      d.vm.box = "bento/centos-7.2"      
+#     d.vm.box = "bento/centos-7.2"      
+      d.vm.box = "centos/7"
       d.vm.hostname = "mesos-#{i}"
 #      d.vm.network "private_network", ip: "10.100.197.20#{i}"
       d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1"
