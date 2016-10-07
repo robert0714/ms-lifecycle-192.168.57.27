@@ -10,6 +10,18 @@
   with_items: centos_files
   tags: [docker-centos]
 
+   
+- name: add repository
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    gpgkey: https://yum.dockerproject.org/gpg
+    enabled: 1
+    gpgcheck: 1
+  ignore_errors: yes
+  tags: [docker-centos]
+
 - name: CentOS package is installed
   yum:
     name: docker-engine
