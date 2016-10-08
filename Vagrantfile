@@ -115,9 +115,9 @@ Vagrant.configure(2) do |config|
   end
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
-  end
+  end  
   if Vagrant.has_plugin?("vagrant-vbguest")
-    config.vbguest.auto_update = false
+    config.vbguest.auto_update = true
     config.vbguest.no_install = true
     config.vbguest.no_remote = true
   end
