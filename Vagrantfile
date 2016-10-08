@@ -75,7 +75,7 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "swarm-master" do |d|
-  config.ssh.insert_key = false
+#  config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
 #    d.vm.box = "bento/centos-7.2"
     d.vm.box = "centos/7" 
@@ -88,7 +88,7 @@ Vagrant.configure(2) do |config|
   end
   (1..2).each do |i|
     config.vm.define "swarm-node-#{i}" do |d|
-    config.ssh.insert_key = false
+#    config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
 #    d.vm.box = "bento/centos-7.2"
      d.vm.box = "centos/7"
@@ -102,9 +102,9 @@ Vagrant.configure(2) do |config|
   end
   (1..2).each do |i|
     config.vm.define "mesos-#{i}" do |d|
-    config.ssh.insert_key=false  
+#    config.ssh.insert_key=false  
 #     d.vm.box = "bento/centos-7.2"      
-      d.vm.box = "centos/7"
+     d.vm.box = "centos/7"
       d.vm.hostname = "mesos-#{i}"
 #      d.vm.network "private_network", ip: "10.100.197.20#{i}"
       d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1"
@@ -116,9 +116,9 @@ Vagrant.configure(2) do |config|
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
   end
-  if Vagrant.has_plugin?("vagrant-vbguest")
-    config.vbguest.auto_update = false
-    config.vbguest.no_install = true
-    config.vbguest.no_remote = true
-  end
+#  if Vagrant.has_plugin?("vagrant-vbguest")
+#    config.vbguest.auto_update = false
+#    config.vbguest.no_install = false
+#    config.vbguest.no_remote = false
+#  end
 end
