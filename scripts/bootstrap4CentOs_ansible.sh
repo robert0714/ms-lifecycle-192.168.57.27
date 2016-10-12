@@ -12,10 +12,17 @@ echo "Installing Ansible  on CentOS..."
 #wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
 #rpm -ivh epel-release-7-8.noarch.rpm
 #rm -rf epel-release-7-8.noarch.rpm
+#su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm'  /
 
-{   # try /
-    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm'  /
-} 
+sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+
 yum -y install ansible
 yum -y install jq
 #yum -y update
