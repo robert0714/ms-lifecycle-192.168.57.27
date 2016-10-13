@@ -13,6 +13,10 @@
   with_items: files
   tags: [consul]
 
+- name: show ip
+  shell: "echo {{ ip }} "    
+  tags: [consul]
+
 - name: Is running
   shell: "nohup consul agent {{ consul_extra }} \
     -data-dir /data/consul/data \
