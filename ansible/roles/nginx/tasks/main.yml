@@ -42,6 +42,11 @@
   when: result|changed
   tags: [nginx]
 
+- name: show body's ip
+  shell: "echo   {{  ip }}"
+  ignore_errors: yes
+  tags: [nginx]
+
 - name: Info is sent to Consul
   uri:
     url: http://localhost:8500/v1/kv/proxy/ip
