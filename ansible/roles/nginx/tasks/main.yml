@@ -43,8 +43,7 @@
   tags: [nginx]
 
 - name: show body's ip
-  shell: "echo   {{  ip }}"
-  ignore_errors: yes
+  debug: "{{ ip }}"
   tags: [nginx]
 
 - name: Info is sent to Consul
