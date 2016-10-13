@@ -67,7 +67,8 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "proxy" do |d|
     d.vm.box = "ubuntu/trusty64"
-    d.vm.hostname = "proxy"
+#    d.vm.hostname = "proxy"
+    d.vm.box = "centos/7"
 #    d.vm.network "private_network", ip: "10.100.193.200"
    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.40" , gateway: "192.168.57.1"  
     d.vm.provider "virtualbox" do |v|
