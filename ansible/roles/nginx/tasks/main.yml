@@ -44,6 +44,7 @@
 
 - name: show body's ip
   debug: "{{ ip }}"
+  ignore_errors: yes
   tags: [nginx]
 
 - name: Info is sent to Consul
