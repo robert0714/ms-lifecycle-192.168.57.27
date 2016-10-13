@@ -4,4 +4,4 @@ set -e
 
 docker pull nginx
 
-docker pull gliderlabs/registrator
+docker pull gliderlabs/registrator:v6
