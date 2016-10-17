@@ -14,3 +14,7 @@ hosts: [
 obsolete_services:
   - puppet
   - chef-client
+
+centos_files: [
+     { src: "centos.sshd_config", dest: "/etc/ssh/sshd_config" },
+  ]
