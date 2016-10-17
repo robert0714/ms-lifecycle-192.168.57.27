@@ -59,8 +59,13 @@ Vagrant.configure(2) do |config|
 #     d.vm.box = "bento/centos-7.2"
       d.vm.hostname = "serv-disc-0#{i}"
 #      d.vm.network "private_network", ip: "10.100.194.20#{i}"
-      d.vm.network "public_network", bridge: "eno4", gateway: "192.168.57.1" , ip: "192.168.57.4#{i}"  ,  netmask: "255.255.255.0"  
-      d.vm.provision :shell, path: "scripts/bootstrap4Ubuntu_gateway.sh"
+      d.vm.network "public_network", bridge: "eno4", gateway: "192.168.57.1" , ip: "192.168.57.4#{i}"  ,  netmask: "255.255.255.0" , auto_config: "false"
+      # d.vm.provision :shell, path: "scripts/bootstrap4Ubuntu_gateway.sh"
+      # IP address of your LAN's router
+      default_router = "192.168.57.1"
+      #
+      # # change/ensure the default route via the local network's WAN router, useful for public_network/bridged mode
+      d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}"
       d.vm.provider "virtualbox" do |v|
         v.memory = 1024
       end
