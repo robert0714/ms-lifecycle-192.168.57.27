@@ -2,3 +2,4 @@ registrator_name: registrator
 registrator_protocol: consul
 registrator_port: 8500
 prod_ip: 192.168.57.31
+cd_ip: 192.168.57.27 

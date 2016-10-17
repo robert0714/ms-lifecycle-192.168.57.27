@@ -1,9 +1,5 @@
-- name: Container is running
-  docker:
-    name: "{{ registrator_name }}"
-    image: gliderlabs/registrator:v6
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-    hostname: "{{ ansible_hostname }}"
-    command: -ip {{ facter_ipaddress_eth1 }} {{ registrator_protocol }}://{{ facter_ipaddress_eth1 }}:{{ registrator_port }}
-  tags: [registrator]
+- include: debian.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- include: centos.yml
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
