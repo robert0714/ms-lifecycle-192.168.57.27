@@ -49,12 +49,13 @@
   tags: [docker]
 
 - name: CentOS Daemon is reloaded
-  command: systemctl daemon-reload
+  command: systemctl daemon-reload && systemctl restart docker
   tags: [docker]
 
 - name: vagrant user is added to the docker group
   user:
-    name: vagrant
+    name: vagrantexit
+
     group: docker
   register: user_result
   tags: [docker]
