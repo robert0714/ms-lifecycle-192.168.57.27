@@ -16,7 +16,7 @@
 
 - name: Container is running
   docker:
-    image: 192.168.57.29/haproxy:v1
+    image: 192.168.57.29:5000/haproxy:v1
     name: haproxy
     state: running
     ports: "{{ ports }}"
