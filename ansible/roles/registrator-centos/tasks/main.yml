@@ -1,9 +1,0 @@
-- name: Container is running
-  docker:
-    name: "{{ registrator_name }}"
-    image: 192.168.57.29:5000/registrator:v7
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-    hostname: "{{ ansible_hostname }}"
-    command: -ip {{ prod_ip }} {{ registrator_protocol }}://{{ prod_ip }}:{{ registrator_port }}
-  tags: [registrator-centos]

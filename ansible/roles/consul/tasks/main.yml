@@ -1,33 +1,5 @@
-- name: Directories are created
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items: directories
-  tags: [consul]
+- include: debian.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Files are copied
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    mode: "{{ item.mode }}"
-  with_items: files
-  tags: [consul]
-
-- name: show ip
-  shell: "echo {{ ip }} "    
-  tags: [consul]
-
-- name: Is running
-  shell: "nohup consul agent {{ consul_extra }} \
-    -data-dir /data/consul/data \
-    -config-dir /data/consul/config \
-    -node={{ ansible_hostname }} \
-    -bind={{ ip }} \
-    -client=0.0.0.0 \
-    >{{ logs_dir }}/consul.log 2>&1 &"
-  tags: [consul]
-
-- name: Has joined
-  shell: consul join {{ consul_server_ip }}
-  when: consul_server_ip is defined
-  tags: [consul]
+- include: centos.yml
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

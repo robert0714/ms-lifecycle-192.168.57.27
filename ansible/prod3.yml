@@ -5,7 +5,7 @@
     - common
     - docker
     - docker-compose
-    - consul-centos
+    - consul
     - registrator
     - consul-template
     - nginx-centos

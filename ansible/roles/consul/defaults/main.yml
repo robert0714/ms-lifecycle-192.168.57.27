@@ -3,8 +3,18 @@ logs_dir: /data/consul/logs
 directories:
   - /data/consul/data
   - /data/consul/config
+  - /data/consul/ui
+  - /data/consul/ui/static
   - "{{ logs_dir }}"
 
 files: [
-  { src: 'consul', dest: '/usr/local/bin/consul', mode: '0755' }
+  { src: 'consul', dest: '/usr/local/bin/consul', mode: '0755' },
+  { src: 'index.html', dest: '/data/consul/ui'  },
+  { src: 'static/application.min.js', dest: '/data/consul/ui/static/application.min.js'  },
+  { src: 'static/base.css', dest: '/data/consul/ui/static/base.css'  },
+  { src: 'static/base.css.map', dest: '/data/consul/ui/static/base.css.map'  },
+  { src: 'static/bootstrap.min.css', dest: '/data/consul/ui/static/bootstrap.min.css'  },
+  { src: 'static/consul-logo.png', dest: '/data/consul/ui/static/consul-logo.png'  },
+  { src: 'static/favicon.png', dest: '/data/consul/ui/static/favicon.png'  },
+  { src: 'static/loading-cylon-purple.svg', dest: '/data/consul/ui/static/loading-cylon-purple.svg'  },
 ]
