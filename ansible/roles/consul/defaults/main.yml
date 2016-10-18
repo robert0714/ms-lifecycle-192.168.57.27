@@ -9,12 +9,12 @@ directories:
 
 files: [
   { src: 'consul', dest: '/usr/local/bin/consul', mode: '0755' },
-  { src: 'index.html', dest: '/data/consul/ui'  },
-  { src: 'static/application.min.js', dest: '/data/consul/ui/static/application.min.js'  },
-  { src: 'static/base.css', dest: '/data/consul/ui/static/base.css'  },
-  { src: 'static/base.css.map', dest: '/data/consul/ui/static/base.css.map'  },
-  { src: 'static/bootstrap.min.css', dest: '/data/consul/ui/static/bootstrap.min.css'  },
-  { src: 'static/consul-logo.png', dest: '/data/consul/ui/static/consul-logo.png'  },
-  { src: 'static/favicon.png', dest: '/data/consul/ui/static/favicon.png'  },
-  { src: 'static/loading-cylon-purple.svg', dest: '/data/consul/ui/static/loading-cylon-purple.svg'  },
+  { src: 'index.html', dest: '/data/consul/ui', mode: '0644' },
+  { src: 'static/application.min.js', dest: '/data/consul/ui/static/application.min.js', mode: '0644'  },
+  { src: 'static/base.css', dest: '/data/consul/ui/static/base.css', mode: '0644'  },
+  { src: 'static/base.css.map', dest: '/data/consul/ui/static/base.css.map', mode: '0644'  },
+  { src: 'static/bootstrap.min.css', dest: '/data/consul/ui/static/bootstrap.min.css', mode: '0644'  },
+  { src: 'static/consul-logo.png', dest: '/data/consul/ui/static/consul-logo.png', mode: '0644'  },
+  { src: 'static/favicon.png', dest: '/data/consul/ui/static/favicon.png', mode: '0644'  },
+  { src: 'static/loading-cylon-purple.svg', dest: '/data/consul/ui/static/loading-cylon-purple.svg', mode: '0644'  },
 ]
