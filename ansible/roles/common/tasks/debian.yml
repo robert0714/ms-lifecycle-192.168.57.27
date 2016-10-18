@@ -21,7 +21,3 @@
   with_items: obsolete_services
   tags: [common]
 
-- name: git is present
-  apt: name=git state=latest  
-  tags:  [common]
-

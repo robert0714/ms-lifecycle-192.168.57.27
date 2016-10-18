@@ -7,30 +7,23 @@ Vagrant.configure(2) do |config|
   else
     config.vm.synced_folder ".", "/vagrant"
   end
-  config.vm.define "cd" do |d|
-#  config.ssh.insert_key = false
-#  config.ssh.password = "vagrant"
-    d.vm.box = "centos/7"
-#    d.vm.box = "bento/centos-7.2"
-#    d.vm.box ="ubuntu/trusty64"
-#    d.vm.box ="bento/ubuntu-14.04"
-#    d.vm.box = "ubuntu/wily64"
+  config.vm.define "cd" do |d| 
+    d.vm.box = "centos/7" 
+#    d.vm.box ="ubuntu/trusty64" 
     d.vm.hostname = "cd"
-#    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27" , gateway: "192.168.57.1"
-#    ununtu need complete ip configuration .
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27", auto_config: "false", netmask: "255.255.255.0" , gateway: "192.168.57.1"
 #    d.vm.network "private_network", ip: "10.100.198.200"
-#    default_router = "192.168.57.1"
-#    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
-    d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
-#    d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/cd.yml -c local"
-    d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/cd-centos.yml -c local"
+#   ubuntu' default gateway had problem on Vagrant
+    default_router = "192.168.57.1"
+    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+#    d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
+    d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/cd.yml -c local"
     d.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end
   end
-  config.vm.define "prod" do |d|
-#  config.ssh.insert_key = false
+  config.vm.define "prod" do |d| 
 #    d.vm.box = "ubuntu/trusty64"
     d.vm.box = "centos/7"
 #    d.vm.box = "bento/centos-7.2"
@@ -58,13 +51,12 @@ Vagrant.configure(2) do |config|
 #    d.vm.box = "williamyeh/ubuntu-trusty64-docker" 
 #     d.vm.box = "bento/centos-7.2"
       d.vm.hostname = "serv-disc-0#{i}"
-#      d.vm.network "private_network", ip: "10.100.194.20#{i}"
+#     d.vm.network "private_network", ip: "10.100.194.20#{i}"
       d.vm.network "public_network", bridge: "eno4", gateway: "192.168.57.1" , ip: "192.168.57.4#{i}"  ,  netmask: "255.255.255.0" , auto_config: "false"
-      # d.vm.provision :shell, path: "scripts/bootstrap4Ubuntu_gateway.sh"
       # IP address of your LAN's router
       default_router = "192.168.57.1"
       #
-      # # change/ensure the default route via the local network's WAN router, useful for public_network/bridged mode
+      # change/ensure the default route via the local network's WAN router, useful for public_network/bridged mode
       d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}"
       d.vm.provider "virtualbox" do |v|
         v.memory = 1024
@@ -76,7 +68,9 @@ Vagrant.configure(2) do |config|
     d.vm.hostname = "proxy"
 #    d.vm.box = "centos/7"
 #    d.vm.network "private_network", ip: "10.100.193.200"
-   d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.40" , gateway: "192.168.57.1"  
+    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.40" , gateway: "192.168.57.1"  
+    default_router = "192.168.57.1"
+    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
     d.vm.provider "virtualbox" do |v|
       v.memory = 1024
     end
