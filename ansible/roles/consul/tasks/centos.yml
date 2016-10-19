@@ -14,14 +14,14 @@
   tags: [consul]
 
 - name: Is running
-  shell: "nohup consul agent -server -bootstrap -ui \
+  shell: "consul agent -server -bootstrap -ui \
     -ui-dir /data/consul/ui \
     -data-dir /data/consul/data \
     -config-dir /data/consul/config \
     -node={{ ansible_hostname }} \
     -bind={{ prod_ip }} \
     -client=0.0.0.0 \
-    >{{ logs_dir }}/consul.log 2>&1 &"
+    >{{ logs_dir }}/consul.log   &"
   tags: [consul]
 
 - name: Has joined
