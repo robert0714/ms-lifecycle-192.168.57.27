@@ -92,7 +92,7 @@
 
 - name: Jenkins is reloaded
   uri:
-    url: "http://{{ cd_ip }}:8080/reload"
+    url: "http://{{ ansible_eth1.ipv4.address }}:8080/reload"
     method: POST
     status_code: 200,302
   when: jobs_result|changed
