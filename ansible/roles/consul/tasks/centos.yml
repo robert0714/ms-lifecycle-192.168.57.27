@@ -14,7 +14,7 @@
   tags: [consul]
 
 - name: Is running
-  shell: "consul agent -server -bootstrap -ui \
+  shell: "/usr/local/bin/consul agent -server -bootstrap -ui \
     -ui-dir /data/consul/ui \
     -data-dir /data/consul/data \
     -config-dir /data/consul/config \
@@ -22,6 +22,8 @@
     -bind={{ prod_ip }} \
     -client=0.0.0.0 \
     >{{ logs_dir }}/consul.log   &"
+  become: true
+  become_user: root
   tags: [consul]
 
 - name: Has joined
