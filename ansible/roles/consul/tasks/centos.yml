@@ -24,6 +24,7 @@
     >{{ logs_dir }}/consul.log   &"
   become: true
   become_user: root
+  when: ansible_eth1.ipv4.address is '192.168.57.31'
   tags: [consul]
 
 - name: Has joined
