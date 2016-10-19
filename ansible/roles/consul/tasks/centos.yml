@@ -14,7 +14,8 @@
   tags: [consul]
 
 - name: Is running
-  shell: "/usr/local/bin/consul agent -server -bootstrap -ui \
+#  shell: "/usr/local/bin/consul agent -server -bootstrap -ui \
+  shell: "/usr/local/bin/consul agent {{ consul_extra }} \  
     -ui-dir /data/consul/ui \
     -data-dir /data/consul/data \
     -config-dir /data/consul/config \
@@ -24,9 +25,10 @@
     >{{ logs_dir }}/consul.log   &"
   become: true
   become_user: root
-  when: ansible_eth1.ipv4.address == '192.168.57.31'
+#  when: ansible_eth1.ipv4.address == '192.168.57.31'
   tags: [consul]
-
+  
+  
 - name: Has joined
   shell: consul join {{ consul_server_ip }}
   when: consul_server_ip is defined
