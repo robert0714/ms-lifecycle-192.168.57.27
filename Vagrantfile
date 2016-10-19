@@ -24,14 +24,14 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "prod" do |d| 
-    d.vm.box = "ubuntu/trusty64"
-#    d.vm.box = "centos/7"
+#    d.vm.box = "ubuntu/trusty64"
+    d.vm.box = "centos/7"
 #    d.vm.box = "williamyeh/centos7-docker"
     d.vm.hostname = "prod"
 #    d.vm.network "private_network", ip: "10.100.198.201"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.31" , gateway: "192.168.57.1", auto_config: "false"
-    default_router = "192.168.57.1"
-    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
+#    default_router = "192.168.57.1"
+#    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
     d.vm.provider "virtualbox" do |v|
       v.memory = 1024
     end

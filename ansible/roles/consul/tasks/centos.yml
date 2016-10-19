@@ -19,7 +19,7 @@
     -data-dir /data/consul/data \
     -config-dir /data/consul/config \
     -node={{ ansible_hostname }} \
-    -bind={{ prod_ip }} \
+    -bind={{ ansible_eth1.ipv4.address }} \
     -client=0.0.0.0 \
     >{{ logs_dir }}/consul.log   &"
   become: true
