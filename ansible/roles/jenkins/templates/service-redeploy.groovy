@@ -1,6 +1,6 @@
 node("cd") {
-    def prodIp = "10.100.192.200"
-    def swarmIp = "10.100.192.200"
+    def prodIp = "192.168.57.50"
+    def swarmIp = "192.168.57.50"
     def proxyNode = "swarm-master"
     def swarmPlaybook = "swarm-healing.yml"
     def proxyPlaybook = "swarm-proxy.yml"
