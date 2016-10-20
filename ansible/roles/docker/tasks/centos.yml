@@ -49,12 +49,10 @@
 
 - name: CentOS Daemon is reloaded
   command: systemctl daemon-reload 
-  when: copy_result|changed or user_result|changed
   tags: [docker]
 
 - name: CentOS Daemon is restarted
   command: systemctl restart docker
-  when: copy_result|changed or user_result|changed
   tags: [docker]
 
 - name: vagrant user is added to the docker group
