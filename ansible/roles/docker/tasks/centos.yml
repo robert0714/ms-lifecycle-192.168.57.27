@@ -1,16 +1,3 @@
-- name: CentOS dirctory are copied
-  file: path=/etc/docker state=directory mode=0755
-  ignore_errors: yes
-  tags: [docker]
-
-- name: CentOS files are copied
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-  with_items: centos_files
-  tags: [docker]
-
-   
 - name: add repository
   yum_repository:
     name: dockerrepo
@@ -28,6 +15,25 @@
     state: present
   tags: [docker]
 
+- name: CentOS dirctory are copied
+  file: path=/etc/docker state=directory mode=0755
+  ignore_errors: yes
+  tags: [docker]
+
+- name: CentOS files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: centos_files
+  tags: [docker]
+  
+- name: Docker Debian files are present
+  template:
+    src: "{{ docker_cfg }}"
+    dest: "{{ docker_cfg_dest }}"
+  register: copy_result
+  tags: [docker]
+  
 - name: python-pip is present
   yum:
     name: python-pip
@@ -39,13 +45,6 @@
     name: docker-py
     version: 1.6.0
     state: present
-  tags: [docker]
-  
-- name: Docker Debian files are present
-  template:
-    src: "{{ docker_cfg }}"
-    dest: "{{ docker_cfg_dest }}"
-  register: copy_result
   tags: [docker]
 
 - name: CentOS Daemon is reloaded
