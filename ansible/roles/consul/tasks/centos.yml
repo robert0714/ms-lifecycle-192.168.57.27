@@ -28,6 +28,6 @@
   
   
 - name: Has joined
-  shell: consul join {{ consul_server_ip }}
+  shell: "/usr/local/bin/consul join {{ consul_server_ip }} "
   when: consul_server_ip is defined
   tags: [consul]
