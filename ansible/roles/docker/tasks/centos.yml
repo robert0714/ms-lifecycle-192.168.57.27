@@ -1,3 +1,16 @@
+- name: CentOS dirctory are copied
+  file: path=/etc/docker state=directory mode=0755
+  ignore_errors: yes
+  tags: [docker]
+
+- name: CentOS files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: centos_files
+  tags: [docker]
+
+   
 - name: add repository
   yum_repository:
     name: dockerrepo
@@ -9,33 +22,10 @@
   ignore_errors: yes
   tags: [docker]
 
-- name: CentOS dirctory are copied
-  file: path=/etc/docker state=directory mode=0755
-  ignore_errors: yes
-  tags: [docker]
-
-- name: CentOS files are copied
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-  with_items: centos_files
-  tags: [docker]
-
 - name: CentOS package is installed
   yum:
     name: docker-engine
     state: present
-  tags: [docker]
-- name: CentOS files are copied
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-  with_items: centos_files
-  tags: [docker]
-
-- name: CentOS dirctory are copied
-  file: path=/etc/docker state=directory mode=0755
-  ignore_errors: yes
   tags: [docker]
 
 - name: python-pip is present
@@ -51,19 +41,16 @@
     state: present
   tags: [docker]
 
+- name: Centos Daemon is reloaded
+  command: systemctl daemon-reload
+  when: copy_result|changed and is_systemd is defined
+  tags: [docker]
+
 - name: vagrant user is added to the docker group
   user:
-    name: vagrantexit
+    name: vagrant
     group: docker
   register: user_result
-  tags: [docker]
-
-- name: CentOS Daemon is reloaded
-  command: systemctl daemon-reload 
-  tags: [docker]
-
-- name: CentOS Daemon is restarted
-  command: systemctl restart docker
   tags: [docker]
 
 - name: Centos Docker service is restarted
@@ -75,7 +62,7 @@
 
 - name: DockerUI is running
   docker:
-    image: 192.168.57.29:5000/ui-for-docker
+    image: uifd/ui-for-docker
     name: dockerui
     ports: 9000:9000
     privileged: yes
@@ -90,4 +77,3 @@
     name: docker
     state: running
   tags: [docker]
-
