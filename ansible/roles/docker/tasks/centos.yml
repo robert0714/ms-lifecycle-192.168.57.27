@@ -9,12 +9,6 @@
   ignore_errors: yes
   tags: [docker]
 
-- name: CentOS package is installed
-  yum:
-    name: docker-engine
-    state: present
-  tags: [docker]
-
 - name: CentOS dirctory are copied
   file: path=/etc/docker state=directory mode=0755
   ignore_errors: yes
@@ -26,12 +20,22 @@
     dest: "{{ item.dest }}"
   with_items: centos_files
   tags: [docker]
-  
-- name: Docker Debian files are present
-  template:
-    src: "{{ docker_cfg }}"
-    dest: "{{ docker_cfg_dest }}"
-  register: copy_result
+
+- name: CentOS package is installed
+  yum:
+    name: docker-engine
+    state: present
+  tags: [docker]
+- name: CentOS files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: centos_files
+  tags: [docker]
+
+- name: CentOS dirctory are copied
+  file: path=/etc/docker state=directory mode=0755
+  ignore_errors: yes
   tags: [docker]
 
 - name: python-pip is present
@@ -47,20 +51,19 @@
     state: present
   tags: [docker]
 
+- name: vagrant user is added to the docker group
+  user:
+    name: vagrantexit
+    group: docker
+  register: user_result
+  tags: [docker]
+
 - name: CentOS Daemon is reloaded
   command: systemctl daemon-reload 
   tags: [docker]
 
 - name: CentOS Daemon is restarted
   command: systemctl restart docker
-  tags: [docker]
-
-- name: vagrant user is added to the docker group
-  user:
-    name: vagrantexit
-
-    group: docker
-  register: user_result
   tags: [docker]
 
 - name: Centos Docker service is restarted
