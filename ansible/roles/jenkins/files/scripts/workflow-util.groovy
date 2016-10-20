@@ -78,7 +78,7 @@ def updateProxy(serviceName, proxyNode) {
     node(proxyNode) {
         unstash 'nginx'
         sh "sudo cp nginx-includes.conf /data/nginx/includes/${serviceName}.conf"     
-        sh "consul-template \
+        sh "sudo /usr/local/bin/consul-template \
             -consul localhost:8500 \
             -template \"nginx-upstreams.ctmpl:/data/nginx/upstreams/${serviceName}.conf:docker kill -s HUP nginx\" \
             -once"
@@ -125,7 +125,7 @@ def updateBGProxy(serviceName, proxyNode, color) {
     node(proxyNode) {
         unstash 'nginx'
         sh "sudo cp nginx-includes.conf /data/nginx/includes/${serviceName}.conf"
-        sh "sudo consul-template \
+        sh "sudo /usr/local/bin/consul-template \
             -consul localhost:8500 \
             -template \"nginx-upstreams-${color}.ctmpl:/data/nginx/upstreams/${serviceName}.conf:docker kill -s HUP nginx\" \
             -once"
