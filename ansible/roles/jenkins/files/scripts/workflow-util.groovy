@@ -78,10 +78,12 @@ def updateProxy(serviceName, proxyNode) {
     node(proxyNode) {
         unstash 'nginx'
         sh "sudo cp nginx-includes.conf /data/nginx/includes/${serviceName}.conf"     
-        sh "sudo /usr/local/bin/consul-template \
+        withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
+          sh "sudo /usr/local/bin/consul-template \
             -consul localhost:8500 \
             -template \"nginx-upstreams.ctmpl:/data/nginx/upstreams/${serviceName}.conf:docker kill -s HUP nginx\" \
             -once"
+        }
     }
 }
 
