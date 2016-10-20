@@ -78,12 +78,10 @@ def updateProxy(serviceName, proxyNode) {
     node(proxyNode) {
         unstash 'nginx'
         sh "sudo cp nginx-includes.conf /data/nginx/includes/${serviceName}.conf"     
-        withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
-          sh "sudo /usr/local/bin/consul-template \
+        sh "sudo /usr/local/bin/consul-template \
             -consul localhost:8500 \
-            -template \"nginx-upstreams.ctmpl:/data/nginx/upstreams/${serviceName}.conf:docker kill -s HUP nginx\" \
+            -template \"nginx-upstreams.ctmpl:/data/nginx/upstreams/${serviceName}.conf:sudo docker kill -s HUP nginx\" \
             -once"
-        }
     }
 }
 
@@ -127,12 +125,10 @@ def updateBGProxy(serviceName, proxyNode, color) {
     node(proxyNode) {
         unstash 'nginx'
         sh "sudo cp nginx-includes.conf /data/nginx/includes/${serviceName}.conf"
-        withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
-            sh "sudo /usr/local/bin/consul-template \
+        sh "sudo /usr/local/bin/consul-template \
             -consul localhost:8500 \
-            -template \"nginx-upstreams-${color}.ctmpl:/data/nginx/upstreams/${serviceName}.conf:docker kill -s HUP nginx\" \
+            -template \"nginx-upstreams-${color}.ctmpl:/data/nginx/upstreams/${serviceName}.conf:sudo docker kill -s HUP nginx\" \
             -once"
-        }
         sh "curl -X PUT -d ${color} http://localhost:8500/v1/kv/${serviceName}/color"
     }
 }
