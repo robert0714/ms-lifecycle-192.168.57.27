@@ -12,6 +12,8 @@ jenkins_ip: 192.168.57.27
 debian_version: trusty
 docker_cfg: docker.cfg
 docker_cfg_dest: /etc/default/docker
+centos_docker_cfg: centos-docker.cfg
+centos_docker_cfg_dest: /lib/systemd/system/docker.service
 elk_ip: 192.168.57.32
 jenkins_version: 1.642.4
 registry_host_dir: /vagrant/registry
