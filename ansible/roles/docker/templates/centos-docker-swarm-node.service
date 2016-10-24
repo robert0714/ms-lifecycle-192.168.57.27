@@ -8,8 +8,10 @@ After=network.target
 #EnvironmentFile=-/etc/sysconfig/docker
 Type=notify 
 ExecStart=/usr/bin/dockerd  -H unix:///var/run/docker.sock \
-          --cluster-store=consul://{{ ansible_eth1.ipv4.address }}:8500/swarm  \
+          -H tcp://0.0.0.0:2375 \
+          --cluster-store=consul://{{ ansible_eth1.ipv4.address }}:8500/swarm \
           --cluster-advertise={{ ansible_eth1.ipv4.address }}:2375 {{ docker_extra }}
+MountFlags=slave
 ExecReload=/bin/kill -s HUP $MAINPID
 
 MountFlags=master
@@ -31,3 +33,34 @@ KillMode=process
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+
+
+
+
+
+
+
+------------------------------
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+After=network.target docker.socket
+Requires=docker.socket
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/docker daemon -H fd:// \
+          -H tcp://0.0.0.0:2375 \
+          -H unix:///var/run/docker.sock \
+          --insecure-registry 10.100.198.200:5000 \
+          --registry-mirror=http://10.100.198.200:5001 
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+
+[Install]
+WantedBy=multi-user.target
+
