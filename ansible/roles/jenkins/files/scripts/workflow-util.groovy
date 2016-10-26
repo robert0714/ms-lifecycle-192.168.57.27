@@ -168,7 +168,7 @@ def updateChecks(serviceName, swarmNode) {
     stash includes: 'consul_check.ctmpl', name: 'consul-check'
     node(swarmNode) {
         unstash 'consul-check'
-        sh "sudo consul-template -consul localhost:8500 \
+        sh "sudo /usr/local/bin/consul-template  -consul localhost:8500 \
             -template 'consul_check.ctmpl:/data/consul/config/${serviceName}.json:killall -HUP consul' \
             -once"
     }
