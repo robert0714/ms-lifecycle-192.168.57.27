@@ -8,6 +8,8 @@ directories:
   - "{{ config_dir }}"
   - "{{ scripts_dir }}"
   - "{{ logs_dir }}"
+  - /data/consul/ui
+  - /data/consul/ui/static
 
 files: [
   { src: 'consul', dest: '/usr/local/bin/consul', mode: '0755' },
