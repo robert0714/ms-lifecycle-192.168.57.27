@@ -2,32 +2,14 @@
   file:
     path: "{{ item }}"
     state: directory
-  with_items: directories
-  tags: [consul]
+  with_items: "{{ directories }}"
+  tags:  [consul-common]
 
 - name: Files are copied
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
-  with_items: files
-  tags: [consul]
+  with_items: "{{ files }}"
+  tags:  [consul-common]
 
-- name: Is running
-  shell: "/usr/local/bin/consul agent {{ consul_extra }} \  
-    -ui-dir /data/consul/ui \
-    -data-dir /data/consul/data \
-    -config-dir /data/consul/config \
-    -node={{ ansible_hostname }} \
-    -bind={{ ansible_eth1.ipv4.address }} \
-    -client=0.0.0.0 \
-    >{{ logs_dir }}/consul.log   &"
-#  become: true
-#  become_user: root
-  tags: [consul]
-  
-  
-- name: Has joined
-  shell: "/usr/local/bin/consul join {{ consul_server_ip }} "
-  when: consul_server_ip is defined
-  tags: [consul]
