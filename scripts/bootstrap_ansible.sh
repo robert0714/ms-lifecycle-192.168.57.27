@@ -8,8 +8,10 @@ apt-get update -y
 
 apt-get install -y software-properties-common
 apt-add-repository ppa:ansible/ansible
-apt-get update
-apt-get install -y --force-yes ansible
+
+apt-get autoremove
+
+apt-get install -y   ansible
 cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
 apt-get install -y git
 
