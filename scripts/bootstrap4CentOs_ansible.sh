@@ -11,7 +11,7 @@ testing=`[[ $A =~ 'Ansible' ]]`
 echo $testing
 
 echo  "############# ${testing} ##############"
-
+ yum update -y 
 if [[ $testing != ""  ]]; then
      echo "Ansible is already installed."
 else
