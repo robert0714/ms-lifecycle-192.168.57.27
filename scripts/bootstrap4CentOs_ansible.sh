@@ -3,12 +3,16 @@
 set -e
 
 echo "Installing Ansible  on CentOS..." 
+
 A=`yum info ansible`
+
 testing=`[[ $A =~ 'Ansible' ]]`
+
 echo $testing
+
 echo  "############# ${testing} ##############"
 
-if [ $testing != ""  ]; then
+if [[ $testing != ""  ]]; then
      echo "Ansible is already installed."
 else
       echo "Ansible is not installed."
@@ -18,15 +22,8 @@ else
       rm -rf epel-release-7-8.noarch.rpm
       
 fi
- yum install -y git
- git clone git://github.com/ansible/ansible.git --recursive
- cd ./ansible
- make rpm
- sudo rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
 
 yum  install -y ansible
 yum  install -y jq
- 
 
 cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
- 
