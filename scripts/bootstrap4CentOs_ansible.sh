@@ -11,7 +11,7 @@ testing=`[[ $A =~ 'Ansible' ]]`
 echo $testing
 
 echo  "############# ${testing} ##############"
- yum update -y 
+ 
 if [[ $testing != ""  ]]; then
      echo "Ansible is already installed."
 else
@@ -27,3 +27,5 @@ yum  install -y ansible
 yum  install -y jq
 
 cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
+
+yum update -y
