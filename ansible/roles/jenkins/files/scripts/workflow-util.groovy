@@ -60,7 +60,7 @@ def deploySwarm(serviceName, swarmIp, color, instances) {
         sh "docker-compose -f docker-compose-swarm.yml \
             pull app-${color}"
         try {
-            sh "docker network create ${serviceName}"
+            sh "docker network create ${serviceName}  --driver overlay"
         } catch (e) {}
         sh "docker-compose -f docker-compose-swarm.yml \
             -p ${serviceName} up -d db"
