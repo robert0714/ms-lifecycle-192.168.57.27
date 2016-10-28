@@ -2,7 +2,7 @@ node("cd") {
     def prodIp = "192.168.57.50"
     def swarmIp = "192.168.57.50"
     def proxyNode = "swarm-master"
-    def swarmPlaybook = "swarm-healing.yml"
+    def swarmPlaybook = "swarm-healing-centos.yml"
     def proxyPlaybook = "swarm-proxy.yml"
 
     def flow = load "/data/scripts/workflow-util.groovy"
