@@ -154,6 +154,8 @@ def getNextColor(currentColor) {
 
 def getAddress(serviceName, prodIp, color) {
     def response = sendHttpRequest("http://${prodIp}:8500/v1/catalog/service/${serviceName}-${color}")
+    println   "http://${prodIp}:8500/v1/catalog/service/${serviceName}-${color}"
+    println   "response:  ${response}"
     def result = new JsonSlurper().parseText(response)[0]
     return result.ServiceAddress + ":" + result.ServicePort
 }
