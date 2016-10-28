@@ -23,6 +23,9 @@ def buildTests(serviceName, registryIpPort) {
 
 def runTests(serviceName, target, extraArgs) {
     stage "Run ${target} tests"
+    println "serviceName: ${serviceName}"
+    println "target: ${target}"
+    println "extraArgs: ${extraArgs}"
     sh "docker-compose -f docker-compose-dev.yml \
         run --rm ${extraArgs} ${target}"
 }
