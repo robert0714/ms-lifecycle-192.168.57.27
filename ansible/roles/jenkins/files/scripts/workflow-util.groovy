@@ -96,6 +96,7 @@ def runBGPreIntegrationTests(serviceName, prodIp, color) {
     } catch(e) {
         stopBG(serviceName, prodIp, color);
         error("Pre-integration tests failed")
+        println "error details: ${e}"
     }
 }
 
@@ -109,6 +110,7 @@ def runBGPostIntegrationTests(serviceName, prodIp, proxyIp, proxyNode, currentCo
         }
         stopBG(serviceName, prodIp, nextColor);
         error("Post-integration tests failed")
+        println "error details: ${e}"
     }
     stopBG(serviceName, prodIp, currentColor);
 }
