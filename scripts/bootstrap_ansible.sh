@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -e
+set -e
 
 echo "Updating Ubuntu ..."
 apt-get update -y
