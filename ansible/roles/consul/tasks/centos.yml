@@ -3,7 +3,7 @@
     path: "{{ item }}"
     state: directory
   with_items: "{{ directories }}"
-  tags:  [consul-common]
+  tags:  [consul]
 
 - name: Files are copied
   copy:
@@ -11,5 +11,5 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
   with_items: "{{ files }}"
-  tags:  [consul-common]
+  tags:  [consul]
 
