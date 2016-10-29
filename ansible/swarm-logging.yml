@@ -10,6 +10,7 @@
     - common
     - rsyslog
     - docker
+    - consul-cfg
     - consul
     - swarm
     - registrator

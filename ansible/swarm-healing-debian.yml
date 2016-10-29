@@ -9,7 +9,7 @@
   roles:
     - common
     - docker
-    - consul
+    - consul-cfg
     - consul-healing-debian
     - consul-template
     - swarm

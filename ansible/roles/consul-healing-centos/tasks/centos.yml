@@ -42,7 +42,6 @@
   tags: [consul]
 
 - name: Consul is restarted
-  shell: "/usr/local/bin/consul  reload  "
-#  shell: killall -HUP consul
+  shell: killall -HUP consul
   when: files|changed or templates|changed
   tags: [consul]
