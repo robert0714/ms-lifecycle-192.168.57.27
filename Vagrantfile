@@ -8,16 +8,16 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder ".", "/vagrant"
   end
   config.vm.define "cd" do |d| 
-#    d.vm.box = "centos/7" 
-    d.vm.box ="ubuntu/trusty64" 
+    d.vm.box = "centos/7" 
+#    d.vm.box ="ubuntu/trusty64" 
     d.vm.hostname = "cd"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27", auto_config: "false", netmask: "255.255.255.0" , gateway: "192.168.57.1"
 #    d.vm.network "private_network", ip: "10.100.198.200"
 #   ubuntu' default gateway had problem on Vagrant
-    default_router = "192.168.57.1"
-    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
-    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
-#    d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
+#    default_router = "192.168.57.1"
+#    d.vm.provision :shell, inline: "ip route delete default 2>&1 >/dev/null || true; ip route add default via #{default_router}" 
+#    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provision :shell, path: "scripts/bootstrap4CentOs_ansible.sh"
     d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/cd.yml -c local"
     d.vm.provider "virtualbox" do |v|
       v.memory = 2048
@@ -47,10 +47,10 @@ Vagrant.configure(2) do |config|
   end
   (1..3).each do |i|
     config.vm.define "serv-disc-0#{i}" do |d|
-     d.vm.box = "ubuntu/trusty64"
+#     d.vm.box = "ubuntu/trusty64"
 #    d.vm.box = "williamyeh/centos7-docker" 
 #    d.vm.box = "williamyeh/ubuntu-trusty64-docker" 
-#     d.vm.box = "bento/centos-7.2"
+     d.vm.box = "bento/centos-7.2"
       d.vm.hostname = "serv-disc-0#{i}"
 #     d.vm.network "private_network", ip: "10.100.194.20#{i}"
       d.vm.network "public_network", bridge: "eno4", gateway: "192.168.57.1" , ip: "192.168.57.4#{i}"  ,  netmask: "255.255.255.0" , auto_config: "false"
@@ -79,8 +79,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "swarm-master" do |d|
 #  config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
-    d.vm.box = "bento/centos-7.2"
-#    d.vm.box = "centos/7" 
+#    d.vm.box = "bento/centos-7.2"
+    d.vm.box = "centos/7" 
     d.vm.hostname = "swarm-master"
 #    d.vm.network "private_network", ip: "10.100.192.200"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.50" , gateway: "192.168.57.1" 
@@ -92,8 +92,8 @@ Vagrant.configure(2) do |config|
     config.vm.define "swarm-node-#{i}" do |d|
 #    config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
-     d.vm.box = "bento/centos-7.2"
-#     d.vm.box = "centos/7"
+#     d.vm.box = "bento/centos-7.2"
+     d.vm.box = "centos/7"
      d.vm.hostname = "swarm-node-#{i}"
 #     d.vm.network "private_network", ip: "10.100.192.20#{i}"
      d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.5#{i}" , gateway: "192.168.57.1" 
