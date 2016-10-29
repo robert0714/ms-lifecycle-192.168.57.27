@@ -28,4 +28,6 @@ yum  install -y jq
 
 cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
 
+yum  install -y git
+
 yum update -y
