@@ -43,7 +43,8 @@ Vagrant.configure(2) do |config|
 #    d.vm.network "private_network", ip: "10.100.198.202"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.32" , gateway: "192.168.57.1" 
     d.vm.provider "virtualbox" do |v|
-      v.memory = 1536
+      v.memory = 3536
+      v.cpus = 3
     end
   end
   (1..3).each do |i|
