@@ -1,0 +1,21 @@
+- name: Download the package
+  get_url:
+    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.0.0-x86_64.rpm
+    dest: /tmp/filebeat.rpm
+  tags: [filebeat]
+
+- name: Install the package
+  yum: name=/tmp/filebeat.rpm state=present
+  tags: [filebeat]
+
+- name: Configuration is present
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+  tags: [filebeat]
+
+- name: Service is started
+  service:
+    name: filebeat
+    state: started
+  tags: [filebeat]
