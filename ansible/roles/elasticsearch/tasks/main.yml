@@ -1,3 +1,8 @@
+- name:  Setting virtual memory
+  shell: sysctl -w vm.max_map_count=262144
+  tags:  [elasticsearch]
+
+
 - name: Container is running
   docker:
     name: elasticsearch
