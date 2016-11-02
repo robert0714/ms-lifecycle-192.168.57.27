@@ -37,7 +37,8 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "logging" do |d|
-    d.vm.box = "ubuntu/trusty64"
+#    d.vm.box = "ubuntu/trusty64"
+    d.vm.box = "centos/7"
     d.vm.hostname = "logging"
 #    d.vm.network "private_network", ip: "10.100.198.202"
     d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.32" , gateway: "192.168.57.1" 
