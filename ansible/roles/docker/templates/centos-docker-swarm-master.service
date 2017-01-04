@@ -8,8 +8,8 @@ After=network.target
 #EnvironmentFile=-/etc/sysconfig/docker
 Type=notify 
 ExecStart=/usr/bin/dockerd  -H unix:///var/run/docker.sock \
-          --cluster-store=consul://{{ ansible_eth1.ipv4.address }}:8500/swarm  \
-          --cluster-advertise={{ ansible_eth1.ipv4.address }}:2375 {{ docker_extra }}
+          --cluster-store=consul://{{ ansible_enp0s8.ipv4.address }}:8500/swarm  \
+          --cluster-advertise={{ ansible_enp0s8.ipv4.address }}:2375 {{ docker_extra }}
 ExecReload=/bin/kill -s HUP $MAINPID
 
 MountFlags=master

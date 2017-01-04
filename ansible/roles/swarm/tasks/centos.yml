@@ -2,7 +2,7 @@
   docker:
     name: swarm-node
     image: swarm
-    command: join --advertise={{  ansible_eth1.ipv4.address  }}:2375 consul://{{  ansible_eth1.ipv4.address  }}:8500/swarm
+    command: join --advertise={{  ansible_enp0s8.ipv4.address  }}:2375 consul://{{  ansible_enp0s8.ipv4.address  }}:8500/swarm
     env:
       SERVICE_NAME: swarm-node
   when: not swarm_master is defined
@@ -13,7 +13,7 @@
     name: swarm-master
     image: swarm
     ports: 2375:2375
-    command: manage consul://{{  ansible_eth1.ipv4.address  }}:8500/swarm
+    command: manage consul://{{  ansible_enp0s8.ipv4.address  }}:8500/swarm
     env:
       SERVICE_NAME: swarm-master
   when: swarm_master is defined

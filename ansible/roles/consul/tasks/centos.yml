@@ -4,7 +4,7 @@
     -data-dir /data/consul/data \
     -config-dir /data/consul/config \
     -node={{ ansible_hostname }} \
-     -bind={{ ansible_eth1.ipv4.address }} \
+     -bind={{ ansible_enp0s8.ipv4.address }} \
     -client=0.0.0.0 \
     >{{ logs_dir }}/consul.log   &" 
   tags: [consul]

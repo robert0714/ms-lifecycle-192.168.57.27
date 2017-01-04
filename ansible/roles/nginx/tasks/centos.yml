@@ -43,7 +43,7 @@
   tags: [nginx]
 
 - name: show body's ip
-  debug: "{{ ansible_eth1.ipv4.address }}"
+  debug: "{{ ansible_enp0s8.ipv4.address }}"
   ignore_errors: yes
   tags: [nginx]
 

@@ -5,5 +5,5 @@
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     hostname: "{{ ansible_hostname }}"
-    command: -ip {{ ansible_eth1.ipv4.address }} {{ registrator_protocol }}://{{ ansible_eth1.ipv4.address }}:{{ registrator_port }}
+    command: -ip {{ ansible_enp0s8.ipv4.address }} {{ registrator_protocol }}://{{ ansible_enp0s8.ipv4.address }}:{{ registrator_port }}
   tags: [registrator-centos]
