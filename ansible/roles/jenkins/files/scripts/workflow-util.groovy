@@ -13,9 +13,12 @@ def provision(playbook) {
 def buildTests(serviceName, registryIpPort) {
     stage "Build tests"
     def tests = docker.image("${registryIpPort}/${serviceName}-tests")
+    println "image: ${registryIpPort}/${serviceName}-tests"
     try {
         tests.pull()
-    } catch(e) {}
+    } catch(e) {
+       println "${e}"
+    }
     sh "docker build -t \"${registryIpPort}/${serviceName}-tests\" \
         -f Dockerfile.test ."
     tests.push()
