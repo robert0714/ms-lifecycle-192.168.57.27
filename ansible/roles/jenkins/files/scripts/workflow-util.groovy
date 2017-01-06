@@ -29,7 +29,7 @@ def runTests(serviceName, target, extraArgs) {
     println "serviceName: ${serviceName}"
     println "target: ${target}"
     println "extraArgs: ${extraArgs}"
-    sh "docker-compose -f docker-compose-dev.yml \
+    sh "COMPOSE_HTTP_TIMEOUT=200   docker-compose -f docker-compose-dev.yml \
         run --rm ${extraArgs} ${target}"
 }
 
