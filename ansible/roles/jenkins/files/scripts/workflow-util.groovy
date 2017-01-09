@@ -47,32 +47,32 @@ def deploy(serviceName, prodIp) {
     stage "Deploy"
     withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
         sh "echo   $DOCKER_HOST"
-        sh "docker-compose pull app"
-        sh "docker-compose -p ${serviceName} up -d app"
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose pull app"
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose -p ${serviceName} up -d app"
     }
 }
 
 def deployBG(serviceName, prodIp, color) {
     stage "Deploy"
     withEnv(["DOCKER_HOST=tcp://${prodIp}:2375"]) {
-        sh "docker-compose pull app-${color}"
-        sh "docker-compose -p ${serviceName} up -d app-${color}"
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose pull app-${color}"
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose -p ${serviceName} up -d app-${color}"
     }
 }
 
 def deploySwarm(serviceName, swarmIp, color, instances) {
     stage "Deploy"
     withEnv(["DOCKER_HOST=tcp://${swarmIp}:2375"]) {
-        sh "docker-compose -f docker-compose-swarm.yml \
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose -f docker-compose-swarm.yml \
             pull app-${color}"
         try {
             sh "docker network create ${serviceName}  --driver overlay"
         } catch (e) {}
-        sh "docker-compose -f docker-compose-swarm.yml \
+        sh "COMPOSE_HTTP_TIMEOUT=200  docker-compose -f docker-compose-swarm.yml \
             -p ${serviceName} up -d db"
-        sh "docker-compose -f docker-compose-swarm.yml \
+        sh "COMPOSE_HTTP_TIMEOUT=200 docker-compose -f docker-compose-swarm.yml \
             -p ${serviceName} rm -f app-${color}"
-        sh "docker-compose -f docker-compose-swarm.yml \
+        sh "COMPOSE_HTTP_TIMEOUT=200  docker-compose -f docker-compose-swarm.yml \
             -p ${serviceName} scale app-${color}=${instances}"
     }
     putInstances(serviceName, swarmIp, instances)
