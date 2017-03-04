@@ -84,3 +84,8 @@
     name: docker
     state: running
   tags: [docker]
+
+- name:  register  Docker service
+  shell: systemctl enable docker 
+  ignore_errors: yes
+  tags:  [docker]
