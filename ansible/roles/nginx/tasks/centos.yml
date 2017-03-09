@@ -51,7 +51,7 @@
   uri:
     url: http://localhost:8500/v1/kv/proxy/ip
     method: PUT
-    body: "{{ ansible_eth0.ipv4.address }}"
+    body: "{{ ansible_enp0s8.ipv4.address }}"
   ignore_errors: yes
   tags: [nginx]
     
