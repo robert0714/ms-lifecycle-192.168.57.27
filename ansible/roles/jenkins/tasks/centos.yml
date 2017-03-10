@@ -79,7 +79,7 @@
     path: "{{ home }}/jobs/{{ item.name }}"
     state: directory
     mode: 0777
-  with_items: "{{  jobs }}"
+  with_items: "{{ jobs }}"
   tags: [jenkins]
 
 - name: Jobs are present
