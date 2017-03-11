@@ -27,6 +27,11 @@
     name: docker-engine
     state: present
   tags: [docker]
+  
+- name:  update  pip
+  shell: pip install -U pip
+  ignore_errors: yes
+  tags:   [docker]
 
 - name: python-pip is present
   yum:
