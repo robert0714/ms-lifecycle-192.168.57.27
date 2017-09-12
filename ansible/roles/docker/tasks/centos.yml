@@ -39,7 +39,6 @@
   yum:
     name: "docker-ce-{{ docker_stable_version.stdout }}"
     state: present
-  notify: restart docker
   tags: [docker]
 
 - name: python-pip is present
@@ -74,21 +73,20 @@
   when: is_systemd is defined
   tags: [docker]
 
+- name: CentOS service is started
+  service:
+    name: docker
+    state: started
+  tags: [docker]
+
 - name: vagrant user is added to the docker group
   user:
     name: vagrant
     group: docker
   register: user_result
   tags: [docker]
-
-- name: Centos Docker service is restarted
-  service:
-    name: docker
-    state: restarted
-  when: copy_result|changed or user_result|changed
-  tags: [docker]
-
-- name: DockerUI is running
+ 
+- name: DockerUI is started
   docker_container:
     restart_policy: always
     image: uifd/ui-for-docker

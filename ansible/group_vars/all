@@ -1,4 +1,5 @@
 # 在設定service-disc01 (192.168.57.41 )  
+# 在設定service-disc01 (192.168.57.41 )  
 # service-disc02 (192.168.57.42 )  
 # service-disc03 (192.168.57.43 )  etcd 時需要改變
 # centos的{{ ansible_eth1.ipv4.address }}確實可以動態抓到所登入機器的ip ,Ubuntu無法使用，只能用 "{{ facter_ipaddress_eth1 }}"是否能使用
