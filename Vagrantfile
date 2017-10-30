@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder ".", "/vagrant"
   end
   config.vm.define "cd" do |d| 
-    d.vm.box = "bento/centos-7.3"
+    d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7" 
 #    d.vm.box ="ubuntu/trusty64" 
     d.vm.hostname = "cd"
@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "prod" do |d| 
 #    d.vm.box = "ubuntu/trusty64"
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
 #    d.vm.box = "williamyeh/centos7-docker"
     d.vm.hostname = "prod"
@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "logging" do |d|
 #    d.vm.box = "ubuntu/trusty64"
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
     d.vm.hostname = "logging"
 #    d.vm.network "private_network", ip: "10.100.198.202"
@@ -59,7 +59,7 @@ Vagrant.configure(2) do |config|
 #     d.vm.box = "ubuntu/trusty64"
 #    d.vm.box = "williamyeh/centos7-docker" 
 #    d.vm.box = "williamyeh/ubuntu-trusty64-docker" 
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
       d.vm.hostname = "serv-disc-0#{i}"
 #     d.vm.network "private_network", ip: "10.100.194.20#{i}"
@@ -93,7 +93,7 @@ Vagrant.configure(2) do |config|
 #  config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
 #    d.vm.box = "bento/centos-7.2"
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
     d.vm.hostname = "swarm-master"
 #    d.vm.network "private_network", ip: "10.100.192.200"
@@ -107,7 +107,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "swarm-node-#{i}" do |d|
 #    config.ssh.insert_key = false
 #    d.vm.box = "ubuntu/wily64"
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
      d.vm.hostname = "swarm-node-#{i}"
 #     d.vm.network "private_network", ip: "10.100.192.20#{i}"
@@ -121,7 +121,7 @@ Vagrant.configure(2) do |config|
   (1..2).each do |i|
     config.vm.define "mesos-#{i}" do |d|
 #    config.ssh.insert_key=false   
-     d.vm.box = "bento/centos-7.3"
+     d.vm.box = "bento/centos-7.4"
 #     d.vm.box = "centos/7"
       d.vm.hostname = "mesos-#{i}"
 #      d.vm.network "private_network", ip: "10.100.197.20#{i}"
