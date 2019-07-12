@@ -17,9 +17,9 @@ if [[ $testing != ""  ]]; then
 else
       echo "Ansible is not installed."
       yum install -y wget
-      wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
-      rpm -ivh  epel-release-7-10.noarch.rpm
-      rm -rf epel-release-7-10.noarch.rpm
+      wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+      rpm -ivh  epel-release-7-11.noarch.rpm
+      rm -rf epel-release-7-11.noarch.rpm
       
 fi
 
